@@ -14,10 +14,11 @@ pipeline {
         }
         stage("Push to DockerHub"){
             steps{
-                withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
-                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-                    sh "docker tag node-app-test-new ${env.dockerHubUser}/node-app-test-new:latest"
-                    sh "docker push ${env.dockerHubUser}/node-app-test-new:latest" 
+                withCredentials([string(credentialsId: 'dockerhubCred', variable: 'dockerhubCred')]){
+                    sh 'docker login docker.io -u shubhamveer111 -p ${dockerhubCred}'
+		    echo "Push Docker Image to DockerHub : In Progress"
+                    sh "docker tag node-app-test-new shubhamveer111/todo-list:latest"
+                    sh "docker push shubhamveer111/todo-list:latest" 
                 }
             }
         }
