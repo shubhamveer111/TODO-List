@@ -19,7 +19,7 @@ pipeline {
 		    echo "Push Docker Image to DockerHub : In Progress"
                     sh "docker tag node-app-test-new shubhamveer111/todo-list:latest"
                     sh "docker push shubhamveer111/todo-list:latest"
-		    echo "Push Docker Image to DockerHub : Completed"
+		    echo "Push Docker Image to DockerHub : Is Completed"
                 }
             }
         }
